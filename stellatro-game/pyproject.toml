@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stellatro-game"
+version = "0.1.0"
+description = "Core Stellatro game engine."
+requires-python = ">=3.13"
+dependencies = [
+    "stellatro-common",
+]
+
+[tool.uv.sources]
+stellatro-common = { path = "../stellatro-common" }
