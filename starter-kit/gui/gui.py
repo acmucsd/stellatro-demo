@@ -142,6 +142,15 @@ def main():
     font_path = get_assets_path("Jersey_10/Jersey10-Regular.ttf")
     bot_status_text = Text((1060, 670), "", 30, (50, 50, 50), font_path, align="right")
 
+    # Large P1/P2 watermark labels centered in each half of the split screen
+    watermark_font = pygame.font.Font(font_path, 220)
+    p1_watermark = watermark_font.render("P1", True, (255, 255, 255))
+    p1_watermark.set_alpha(120)
+    p1_watermark_rect = p1_watermark.get_rect(center=(270, 330))
+    p2_watermark = watermark_font.render("P2", True, (255, 255, 255))
+    p2_watermark.set_alpha(120)
+    p2_watermark_rect = p2_watermark.get_rect(center=(810, 330))
+
     def update_bot_status(text):
         bot_status_text.updateText(text)
         if args.no_bg:
@@ -150,6 +159,8 @@ def main():
             flow_bg.update(0)
             flow_bg.draw(screen)
             wind_effect.draw(screen)
+        screen.blit(p1_watermark, p1_watermark_rect)
+        screen.blit(p2_watermark, p2_watermark_rect)
         all_sprites.draw(screen)
         screen.blit(bot_status_text.image, bot_status_text.rect)
         pygame.display.update()
@@ -426,6 +437,8 @@ def main():
         else:
             flow_bg.draw(screen)
             wind_effect.draw(screen)
+        screen.blit(p1_watermark, p1_watermark_rect)
+        screen.blit(p2_watermark, p2_watermark_rect)
         p1_gui.draw(all_sprites); p2_gui.draw(all_sprites)
         if game.phase == Phase.DRAFT: phase_container.draw(all_sprites); joker_pool.draw(all_sprites)
         if game.phase == Phase.PLAY: pygame.draw.line(screen, (255,255,255), (540, 0), (540, 720),1)
