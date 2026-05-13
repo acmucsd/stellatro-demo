@@ -1,5 +1,3 @@
-# stellatro-demo
-
 ## What is Stellatro?
 
 Stellatro is a two-player, poker-meets-Balatro card game. Each round, both
@@ -19,6 +17,8 @@ A round runs in two phases:
      to add chips, mult, retrigger cards, or otherwise modify scoring.
 
 Whoever has the higher score after both players play wins the round.
+
+
 
 The project is split into three packages:
 
@@ -82,3 +82,9 @@ python starter-kit/gui/gui.py \
     --p1 bots/bot_a.py --p2 bots/bot_b.py \
     --game_speed 3.0 --autorestart --report
 ```
+
+## Notes
+
+This is a demo of the competition, intended for users to become familiar with the game beforehand. 
+
+You are NOT intended to begin coding a bot before the competition starts. The current jokers given is a small subset of the amount of jokers in the competition. 
