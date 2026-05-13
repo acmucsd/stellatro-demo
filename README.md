@@ -31,12 +31,19 @@ The project is split into three packages:
 
 ## Installing requirements
 
-Stellatro targets **Python 3.13+**. From the repo root:
+Stellatro targets **Python 3.13+**.
+
+### macOS / Linux
+
+From the repo root:
 
 ```bash
 # (optional) create and activate a virtual environment
 python3.13 -m venv .venv
 source .venv/bin/activate
+
+# upgrade pip to the latest version
+python -m pip install --upgrade pip
 
 # install the two local packages in editable mode
 pip install -e ./stellatro-common
@@ -45,6 +52,33 @@ pip install -e ./stellatro-game
 # install the GUI's runtime dependencies
 pip install pygame numpy pydantic
 ```
+
+### Windows
+
+From the repo root, in PowerShell or Command Prompt:
+
+```powershell
+# (optional) create and activate a virtual environment
+py -3.13 -m venv .venv
+.venv\Scripts\activate
+
+# upgrade pip to the latest version
+python -m pip install --upgrade pip
+
+# install the two local packages in editable mode
+pip install -e .\stellatro-common
+pip install -e .\stellatro-game
+
+# install the GUI's runtime dependencies
+pip install pygame numpy pydantic
+```
+
+If `py -3.13` isn't available, install Python 3.13 from
+[python.org](https://www.python.org/downloads/windows/) and make sure the
+"Add Python to PATH" option is checked. On PowerShell, if activation is
+blocked by the execution policy, run
+`Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` once and re-open the
+shell.
 
 `stellatro-common` and `stellatro-game` are installed editable so that any
 edits you make to the engine are picked up immediately by the GUI.
