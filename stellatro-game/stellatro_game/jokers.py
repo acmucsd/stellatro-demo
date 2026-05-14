@@ -76,7 +76,7 @@ class PairChipBoost(Joker):
 
 class TripletMultBoost(Joker):
     name = "Zany Joker"
-    description = "+5 if the hand includes Three of a Kind."
+    description = "+5 Mult if the hand includes Three of a Kind."
 
     def post_card_phase(self, chips, mult, hand):
         Checker_instance = Checker(hand)
