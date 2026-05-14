@@ -86,10 +86,10 @@ class CardHandContainer(pygame.sprite.Group):
             group.add(sprite)
     def sort(self, group : pygame.sprite.Group, by="rank"):
         suit_sort_order = {
-            Suit.SPADE: 1,
-            Suit.HEART: 2,
-            Suit.DIAMOND: 3,
-            Suit.CLUB: 4
+            Suit.SPADE.value: 1,
+            Suit.HEART.value: 2,
+            Suit.DIAMOND.value: 3,
+            Suit.CLUB.value: 4
         }
         if by == "rank":
             sorted_sprites=sorted(self.sprites(),key=lambda card: card.rank)
