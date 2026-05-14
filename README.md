@@ -44,6 +44,7 @@ source .venv/bin/activate
 
 # upgrade pip to the latest version
 python -m pip install --upgrade pip
+# python3 -m pip install --upgrade pip
 
 # install the two local packages in editable mode
 pip install -e ./stellatro-common
@@ -64,6 +65,7 @@ py -3.13 -m venv .venv
 
 # upgrade pip to the latest version
 python -m pip install --upgrade pip
+# python3 -m pip install --upgrade pip
 
 # install the two local packages in editable mode
 pip install -e .\stellatro-common
@@ -89,6 +91,7 @@ From the repo root:
 
 ```bash
 python starter-kit/gui/gui.py
+# python3 starter-kit/gui/gui.py
 ```
 
 By default both players are human-controlled. Useful flags:
@@ -107,14 +110,17 @@ Examples:
 ```bash
 # Human vs. human
 python starter-kit/gui/gui.py
+# python3 starter-kit/gui/gui.py
 
 # Human (P1) vs. bot (P2)
 python starter-kit/gui/gui.py --p2 path/to/my_bot.py
+# python3 starter-kit/gui/gui.py --p2 path/to/my_bot.py
 
 # Bot vs. bot, sped up, with CSV reporting and autorestart
 python starter-kit/gui/gui.py \
     --p1 bots/bot_a.py --p2 bots/bot_b.py \
     --game_speed 3.0 --autorestart --report
+# python3 starter-kit/gui/gui.py --p1 bots/bot_a.py --p2 bots/bot_b.py --game_speed 3.0 --autorestart --report
 ```
 
 ## Notes
