@@ -127,4 +127,4 @@ python starter-kit/gui/gui.py \
 
 This is a demo of the competition, intended for users to become familiar with the game beforehand. 
 
-You are NOT intended to begin coding a bot before the competition starts. The current jokers given is a small subset of the amount of jokers in the competition. All jokers are subject to change before the competition.
+You are NOT intended to begin coding a bot before the competition starts. The current jokers given is a small subset of the amount of jokers in the competition. All jokers and values given are subject to change before the competition.
