@@ -102,20 +102,6 @@ def get_hand_type(hand):
         hand_type = HandType.PAIR
     return hand_type
 
-def format_number(n) -> str:
-    try:
-        f = float(n)
-    except (TypeError, ValueError):
-        return str(n)
-    if math.isnan(f):
-        return "nan"
-    if math.isinf(f):
-        return "inf"
-    if abs(f) < 100_000_000_000:
-        return str(int(f))
-    exp = int(math.floor(math.log10(abs(f))))
-    mantissa = f / (10 ** exp)
-    return f"{mantissa:.2f}e{exp}"
 
 def get_chips_by_rank(rank):
     if rank >= 10 and rank <= 13:
