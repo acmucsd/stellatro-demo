@@ -275,7 +275,7 @@ class PlayerGUI:
                             if self.anim_chips > old_chips:
                                 group.add(FloatingText(joker.rect.midbottom, f"+{self.anim_chips - old_chips} Chips", 30, (255, 150, 180), font_url, alignment="top"))
                             if self.anim_mult > old_mult:
-                                group.add(FloatingText(joker.rect.midbottom, f"x{self.anim_mult - old_mult} Mult", 30, (180, 100, 220), font_url, alignment="top"))
+                                group.add(FloatingText(joker.rect.midbottom, f"+{self.anim_mult - old_mult} Mult", 30, (180, 100, 220), font_url, alignment="top"))
 
                             self.anim_timer = 0.0
                         self.anim_joker_idx += 1
