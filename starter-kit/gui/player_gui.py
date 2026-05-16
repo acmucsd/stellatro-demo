@@ -229,7 +229,7 @@ class PlayerGUI:
                 self.player_info.update(self.anim_chips, self.anim_mult, None, None)
                 font_url = get_assets_path("Jersey_10/Jersey10-Regular.ttf")
                 group.add(FloatingText(self.player_info.bg.rect.midtop, f"+{self.anim_chips} Chips", 30, (255, 150, 180), font_url))
-                group.add(FloatingText(self.player_info.bg.rect.midtop, f"x{self.anim_mult} Mult", 30, (180, 100, 220), font_url))
+                group.add(FloatingText(self.player_info.bg.rect.midtop, f"+{self.anim_mult} Mult", 30, (180, 100, 220), font_url))
 
                 self.anim_timer = 0.0
                 self.anim_card_idx = 0
@@ -258,30 +258,32 @@ class PlayerGUI:
                     self.anim_step = 'post-phase'
 
             elif self.anim_step == 'apply-card-joker':
-                if self.anim_timer >= 0.15:
-                    if self.anim_joker_idx < len(self.jokers.sprites()):
-                        joker = self.jokers.sprites()[self.anim_joker_idx]
-                        old_chips, old_mult = self.anim_chips, self.anim_mult
-                        
-                        card = self.cards_to_play[self.anim_card_idx]
-                        self.anim_chips, self.anim_mult = joker.apply_card_phase(
-                            self.anim_chips, self.anim_mult, card.rank, next(iter(card.suits))
-                        )
-                        
-                        if old_chips != self.anim_chips or old_mult != self.anim_mult:
-                            self.player_info.update(self.anim_chips, self.anim_mult, None, None)
-                            joker.shake()
-                            font_url = get_assets_path("Jersey_10/Jersey10-Regular.ttf")
-                            if self.anim_chips > old_chips:
-                                group.add(FloatingText(joker.rect.midbottom, f"+{self.anim_chips - old_chips} Chips", 30, (255, 150, 180), font_url, alignment="top"))
-                            if self.anim_mult > old_mult:
-                                group.add(FloatingText(joker.rect.midbottom, f"+{self.anim_mult - old_mult} Mult", 30, (180, 100, 220), font_url, alignment="top"))
-
-                            self.anim_timer = 0.0
-                        self.anim_joker_idx += 1
-                    else:
+                if self.anim_joker_idx < len(self.jokers.sprites()):
+                    joker = self.jokers.sprites()[self.anim_joker_idx]
+                    old_chips, old_mult = self.anim_chips, self.anim_mult
+                    card = self.cards_to_play[self.anim_card_idx]
+                    self.anim_chips, self.anim_mult = joker.apply_card_phase(
+                        self.anim_chips, self.anim_mult, card.rank, next(iter(card.suits))
+                    )
+                    if old_chips != self.anim_chips or old_mult != self.anim_mult:
+                        self.player_info.update(self.anim_chips, self.anim_mult, None, None)
+                        joker.shake()
+                        font_url = get_assets_path("Jersey_10/Jersey10-Regular.ttf")
+                        if self.anim_chips > old_chips:
+                            group.add(FloatingText(joker.rect.midbottom, f"+{self.anim_chips - old_chips} Chips", 30, (255, 150, 180), font_url, alignment="top"))
+                        if self.anim_mult > old_mult:
+                            group.add(FloatingText(joker.rect.midbottom, f"+{self.anim_mult - old_mult} Mult", 30, (180, 100, 220), font_url, alignment="top"))
                         self.anim_timer = 0.0
-                        self.anim_step = 'check-retrigger'
+                        self.anim_joker_idx += 1
+                        self.anim_step = 'apply-card-joker-wait'
+                    else:
+                        self.anim_joker_idx += 1
+                else:
+                    self.anim_timer = 0.0
+                    self.anim_step = 'check-retrigger'
+
+            elif self.anim_timer >= 0.4 and self.anim_step == 'apply-card-joker-wait':
+                self.anim_step = 'apply-card-joker'
 
             elif self.anim_step == 'check-retrigger':
                 card = self.cards_to_play[self.anim_card_idx]
@@ -320,7 +322,7 @@ class PlayerGUI:
                             if self.anim_chips > old_chips:
                                 group.add(FloatingText(joker.rect.midbottom, f"+{self.anim_chips - old_chips} Chips", 30, (255, 150, 180), font_url, alignment="top"))
                             if self.anim_mult > old_mult:
-                                group.add(FloatingText(joker.rect.midbottom, f"x{self.anim_mult - old_mult} Mult", 30, (180, 100, 220), font_url, alignment="top"))
+                                group.add(FloatingText(joker.rect.midbottom, f"+{self.anim_mult - old_mult} Mult", 30, (180, 100, 220), font_url, alignment="top"))
                             self.anim_timer = 0.0
                         self.anim_joker_idx += 1
                     else:

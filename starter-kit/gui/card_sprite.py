@@ -1,6 +1,6 @@
 from stellatro_common.models import CardModel
 import pygame
-from stellatro_game.card import Card
+from stellatro_game.card import Card, Suit
 from utils import get_assets_path
 from pydantic import ConfigDict
 
@@ -52,11 +52,11 @@ class CardSprite(pygame.sprite.Sprite, Card):
 
     def __init__(self, card_instance : CardModel, x=0, y=0):
         suit_str = list(card_instance.suits)[0]
-        Card.__init__(self, rank=card_instance.rank, suit=suit_str)
+        Card.__init__(self, rank=card_instance.rank, suit=Suit(suit_str))
         pygame.sprite.Sprite.__init__(self)
 
         self._original_card = card_instance
-        self.initialSuit = list(self.suits)[0]
+        self.initialSuit = suit_str  # keep as string for image paths and tooltips
 
         self.selected = False
         self.stella = getattr(card_instance, "stella", 0) or 0
