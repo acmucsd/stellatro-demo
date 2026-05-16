@@ -98,12 +98,8 @@ By default both players are human-controlled. Useful flags:
 
 | Flag | Description |
 | --- | --- |
-| `--p1 <path>` | Path to a Python file implementing a Player 1 bot. Omit for human. |
-| `--p2 <path>` | Path to a Python file implementing a Player 2 bot. Omit for human. |
 | `--game_speed <float>` | Multiplier on the simulation/animation speed (default `1.0`). |
 | `--no_bg` | Disable the animated background (useful on slower machines). |
-| `--autorestart` | Immediately start a new game when one ends. |
-| `--report` | Append each game's result to a CSV in `starter-kit/gui/reports/`. |
 
 Examples:
 
@@ -111,16 +107,6 @@ Examples:
 # Human vs. human
 python starter-kit/gui/gui.py
 # python3 starter-kit/gui/gui.py
-
-# Human (P1) vs. bot (P2)
-python starter-kit/gui/gui.py --p2 path/to/my_bot.py
-# python3 starter-kit/gui/gui.py --p2 path/to/my_bot.py
-
-# Bot vs. bot, sped up, with CSV reporting and autorestart
-python starter-kit/gui/gui.py \
-    --p1 bots/bot_a.py --p2 bots/bot_b.py \
-    --game_speed 3.0 --autorestart --report
-# python3 starter-kit/gui/gui.py --p1 bots/bot_a.py --p2 bots/bot_b.py --game_speed 3.0 --autorestart --report
 ```
 
 ## Notes
