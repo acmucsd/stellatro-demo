@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 import random
 from dataclasses import dataclass
 from enum import Enum
@@ -49,9 +49,11 @@ class Card:
     num_triggers = 1
     stella = 0
 
-    def __init__(self, rank: int, suit: Suit):
+    def __init__(self, rank: int, suit: Union[Suit, str]):
         # Initialize as sets using curly braces
         self.rank = rank
+        if isinstance(suit, str):
+            suit = Suit(suit)
         self.suits = {suit}
         self.stella = 0
 

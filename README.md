@@ -31,14 +31,14 @@ The project is split into three packages:
 
 ## Installing requirements
 
-Stellatro targets **Python 3.13**.
+Stellatro targets **Python 3.13**. Please install it [here](https://www.python.org/downloads/release/python-3130/) if you do not have it installed. 
 
 ### macOS / Linux
 
 From the repo root:
 
 ```bash
-# (optional) create and activate a virtual environment
+# (optional, highly recommended) create and activate a virtual environment
 python3.13 -m venv .venv
 source .venv/bin/activate
 
@@ -59,7 +59,7 @@ pip install pygame numpy pydantic
 From the repo root, in PowerShell or Command Prompt:
 
 ```powershell
-# (optional) create and activate a virtual environment
+# (optional, highly recommended) create and activate a virtual environment
 py -3.13 -m venv .venv
 .venv\Scripts\activate
 

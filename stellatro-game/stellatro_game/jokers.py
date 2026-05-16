@@ -38,7 +38,7 @@ class RegularJoker(Joker):
 
 class PairMultBoost(Joker):
     name = "Jolly Joker"
-    description = "Boost multiplier by 1 if the hand includes Pair."
+    description = "+1 Mult if the hand includes Pair."
 
     def post_card_phase(
         self, chips: int, mult: int, hand: List[Card]
@@ -58,7 +58,7 @@ class PairMultBoost(Joker):
 
 class PairChipBoost(Joker):
     name = "Sly Joker"
-    description = "Add 10 chips if the hand includes Pair."
+    description = "+10 chips if the hand includes Pair."
 
     def post_card_phase(self, chips, mult, hand):
         Checker_instance = Checker(hand)
@@ -92,7 +92,7 @@ class TripletMultBoost(Joker):
 
 class TwoPairMultBoost(Joker):
     name = "Cheeky Joker"
-    description = "Boost multiplier by 1 if the hand includes Two Pair."
+    description = "+1 Mult if the hand includes Two Pair."
 
     def post_card_phase(self, chips, mult, hand):
         Checker_instance = Checker(hand)
@@ -108,7 +108,7 @@ class TwoPairMultBoost(Joker):
 
 class StraightMultBoost(Joker):
     name = "Witty Joker"
-    description = "Boost multiplier by 1 if the hand includes Straight."
+    description = "+1 Mult if the hand includes Straight."
 
     def post_card_phase(self, chips, mult, hand):
         Checker_instance = Checker(hand)
@@ -123,7 +123,7 @@ class StraightMultBoost(Joker):
 
 class FlushMultBoost(Joker):
     name = "Daring Joker"
-    description = "Boost multiplier by 1 if the hand includes Flush."
+    description = "+1 Mult if the hand includes Flush."
 
     def post_card_phase(self, chips, mult, hand):
         Checker_instance = Checker(hand)
@@ -138,7 +138,7 @@ class FlushMultBoost(Joker):
 
 class TripletChipBoost(Joker):
     name = "Merry Joker"
-    description = "Add 10 chips if the hand includes Three of a Kind."
+    description = "+10 chips if the hand includes Three of a Kind."
 
     def post_card_phase(self, chips, mult, hand):
         Checker_instance = Checker(hand)
@@ -154,7 +154,7 @@ class TripletChipBoost(Joker):
 
 class TwoPairChipBoost(Joker):
     name = "Jovial Joker"
-    description = "Add 10 chips if the hand includes Two Pair."
+    description = "+10 chips if the hand includes Two Pair."
 
     def post_card_phase(self, chips, mult, hand):
         Checker_instance = Checker(hand)
@@ -170,7 +170,7 @@ class TwoPairChipBoost(Joker):
 
 class StraightChipBoost(Joker):
     name = "Lively Joker"
-    description = "Add 10 chips if the hand includes Straight."
+    description = "+10 chips if the hand includes Straight."
 
     def post_card_phase(self, chips, mult, hand):
         Checker_instance = Checker(hand)
@@ -185,7 +185,7 @@ class StraightChipBoost(Joker):
 
 class FlushChipBoost(Joker):
     name = "Vibrant Joker"
-    description = "Add 10 chips if the hand includes Flush."
+    description = "+10 chips if the hand includes Flush."
 
     def post_card_phase(self, chips, mult, hand):
         Checker_instance = Checker(hand)
@@ -200,7 +200,7 @@ class FlushChipBoost(Joker):
 
 class DiamondMultBoost(Joker):
     name = "Diamond Joker"
-    description = "Played cards with Diamond suit boost multiplier by 1."
+    description = "Scored cards with Diamond suit give +1 Mult."
 
     def apply_card_phase(
         self, chips: int, mult: int, rank: Rank, suit: Suit
@@ -212,7 +212,7 @@ class DiamondMultBoost(Joker):
 
 class HeartMultBoost(Joker):
     name = "Heart Joker"
-    description = "Played cards with Heart suit boost multiplier by 1."
+    description = "Scored cards with Heart suit give +1 Mult."
 
     def apply_card_phase(
         self, chips: int, mult: int, rank: Rank, suit: Suit
@@ -224,7 +224,7 @@ class HeartMultBoost(Joker):
 
 class WishUponAStar(Joker):
     name = "Wish Upon a Star"
-    description = "Lowest-ranked card gain 1 Stella before scoring."
+    description = "Lowest-ranked card in played hand gain 1 Stella before scoring."
 
     def pre_card_phase(self, hand: List[Card]) -> List[Card]:
         if not hand:
