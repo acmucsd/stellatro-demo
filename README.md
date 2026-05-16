@@ -104,8 +104,8 @@ By default both players are human-controlled. Useful flags:
 Examples:
 
 ```bash
-# Human vs. human
-python starter-kit/gui/gui.py
+# Faster game
+python starter-kit/gui/gui.py --game_speed 2.0 --no_bg
 # python3 starter-kit/gui/gui.py
 ```
 
