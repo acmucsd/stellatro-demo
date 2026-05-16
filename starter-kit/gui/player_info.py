@@ -1,5 +1,5 @@
 import pygame
-from utils import get_assets_path
+from utils import get_assets_path, format_number
 from text import Text
 from stellatro_game.checker import HandType
 
@@ -52,11 +52,11 @@ class PlayerInfo():
     
     def update(self, chips=None, mult=None, round_score=None, hand_type=None):
         if chips != None:
-            self.chips_text.updateText(str(chips))
+            self.chips_text.updateText(format_number(chips))
         if mult != None:
-            self.mult_text.updateText(str(mult))
+            self.mult_text.updateText(format_number(mult))
         if round_score != None:
-            self.round_text.updateText(str(round_score))
+            self.round_text.updateText(format_number(round_score))
         if hand_type != None:
             self.hand_type_text.updateText(getHandTypeStr(hand_type))
         

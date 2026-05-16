@@ -43,6 +43,7 @@ import multiprocessing
 import queue
 import csv
 import os
+import random
 from datetime import datetime, UTC
 
 def bot_worker(bot_path, request_queue, response_queue):
@@ -188,7 +189,8 @@ def main():
                  print(f"Warning: Could not find sprite for logical index {idx}")
         return sprites_to_play
 
-    game = Game()
+    current_seed = random.randint(0, 2**31 - 1)
+    game = Game(rng=random.Random(current_seed))
     game.start_round()
 
     background = pygame.Surface(screen.get_size())
@@ -243,11 +245,13 @@ def main():
         running = False
 
     def on_restart():
-        nonlocal game, p1_gui, p2_gui, joker_pool, phase_container, p1_bot_cards_to_play, p2_bot_cards_to_play, reported, game_counter
+        nonlocal game, p1_gui, p2_gui, joker_pool, phase_container, p1_bot_cards_to_play, p2_bot_cards_to_play, reported, game_counter, current_seed
         reported = False
         game_counter += 1
-        game = Game()
+        current_seed = random.randint(0, 2**31 - 1)
+        game = Game(rng=random.Random(current_seed))
         game.start_round()
+        game_over_container.seed = current_seed
         all_sprites.empty()
         phase_container = PhaseContainer(pygame.math.Vector2(434,13),game)
         joker_pool.empty()
@@ -271,6 +275,7 @@ def main():
         p2_bot_cards_to_play = []
 
     game_over_container = GameOverContainer(pos=screen.get_rect().center, on_close=on_close, on_restart=on_restart)
+    game_over_container.seed = current_seed
 
     initial_state = game.get_game_state()
     for i, card in enumerate(initial_state.player1_hand):
@@ -361,7 +366,7 @@ def main():
                 on_restart()
 
         hovered_sprite = None
-        joker_sprites = list(joker_pool.sprites()) if game.phase == Phase.DRAFT else list(p1_gui.jokers.sprites()) + list(p2_gui.jokers.sprites())
+        joker_sprites = list(joker_pool.sprites()) + list(p1_gui.jokers.sprites()) + list(p2_gui.jokers.sprites()) if game.phase == Phase.DRAFT else list(p1_gui.jokers.sprites()) + list(p2_gui.jokers.sprites())
         joker_pool.update(delta)
         phase_container.update(delta)
 
@@ -375,6 +380,7 @@ def main():
                     ImageButton.any_button_hovered = True; hovered_sprite = card; break
 
         if hovered_sprite:
+            tooltip.update(delta)
             if isinstance(hovered_sprite, Joker):
                 tooltip_pos = hovered_sprite.get_tooltip_pos()
                 tooltip.displayTooltip(pygame.math.Vector2(tooltip_pos[0],tooltip_pos[1]),hovered_sprite.name,hovered_sprite.description, all_sprites)
