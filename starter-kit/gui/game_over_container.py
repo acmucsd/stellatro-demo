@@ -1,6 +1,6 @@
 import pygame
 from text import TextBox
-from utils import get_assets_path
+from utils import get_assets_path, format_number
 from stellatro_game.game import Game
 from button import ImageButton
 class GameOverContainer(pygame.sprite.Sprite):
@@ -71,8 +71,9 @@ class GameOverContainer(pygame.sprite.Sprite):
         )
         self.buttons = pygame.sprite.Group()
         self.buttons.add(self.close_btn, self.restart_btn)
-        
-   
+        self.seed = None
+
+
     def handle_events(self,event):
         for btn in self.buttons:
             btn.handle_event(event)
@@ -86,10 +87,10 @@ class GameOverContainer(pygame.sprite.Sprite):
             self.header_text.set_text("DRAW!")
         
         
-        self.p1_score_text.set_text(str(game.player1_score))
-        self.p2_score_text.set_text(str(game.player2_score))
+        self.p1_score_text.set_text(format_number(game.player1_score))
+        self.p2_score_text.set_text(format_number(game.player2_score))
+        self.seed_text.set_text(str(self.seed) if self.seed is not None else "n/a")
         self.buttons.update(delta,mouse_pos,mouse_btns)
-        #self.seed_text.set_text(str(game.seed)) <- implement this later?
     def draw(self, group):
         group.add(self)
         group.add(self.p1_score_text,self.p2_score_text,self.header_text,self.seed_text)
